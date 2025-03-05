@@ -387,7 +387,7 @@ class setSurveyType(sublime_plugin.TextCommand):
         sels = self.view.sel()
         sel = sels[0]
         surveyType = "<!-- surveyType="+self.view.substr(sel)+" -->"
-        self.view.replace(edit,sel, surveyType)
+        self.view.replace(edit, sel, surveyType)
 
 ################# Survey types
 
@@ -437,7 +437,7 @@ class makeSurveyCommand(sublime_plugin.TextCommand):
                     printPage = "%s\n\n%s\n\n%s" % (headerFooter[0], input, headerFooter[1])
                     headerFooter =[]
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception:
             print ('could not create survey layout')
             print (e)
@@ -473,7 +473,7 @@ class makeRadioCommand(sublime_plugin.TextCommand):
   <row label="r0" value="0">False</row>
 </radio>
 <suspend/>""" % (label.strip(), title.strip())
-                    return self.view.replace(edit,sel, printpage)
+                    return self.view.replace(edit, sel, printpage)
 
 
                 if "<comment>" not in input:
@@ -516,7 +516,7 @@ class makeRadioCommand(sublime_plugin.TextCommand):
                       printPage = "<radio\n  label=\"%s\">\n  <title>%s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), title.strip(), output)
 
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print ("makeRadio clip failed:")
             print (e)
@@ -634,7 +634,7 @@ class makeRatingCommand(sublime_plugin.TextCommand):
                         printPage = "<radio\n  label=\"%s\"%s%s\n  type=\"rating\">\n  <title>%s</title>\n  %s\n</radio>\n<suspend/>" % (label.strip(), shffl, style, title.strip(), output)
 
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print ("makeRating clip failed:")
             print (e)
@@ -727,7 +727,7 @@ class makeCheckboxCommand(sublime_plugin.TextCommand):
                         printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\">\n  <title>%s</title>\n  %s  %s\n</checkbox>\n<suspend/>" % (label.strip(), title.strip(), comment, output)
                     else:
                         printPage = "<checkbox\n  label=\"%s\"\n  atleast=\"1\">\n  <title>%s</title>\n  %s\n</checkbox>\n<suspend/>" % (label.strip(), title.strip(), output)
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print(e)
 
@@ -752,7 +752,7 @@ class makeSelectCommand(sublime_plugin.TextCommand):
                 # compose the select question
                 printPage = "<select\n  label=\"%s\"\n  optional=\"0\">\n  <title>%s</title>  %s\n</select>\n<suspend/>" % (label.strip(), title.strip(), output)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print(e)
 
@@ -787,7 +787,7 @@ class makeTextareaCommand(sublime_plugin.TextCommand):
                     else:
                         printPage = "<textarea\n  label=\"%s\"\n  optional=\"0\">\n  <title>%s</title>\n%s</textarea>\n<suspend/>" % (label.strip(), title.strip(), output)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print ("makeTextarea failed")
             print(e)
@@ -839,7 +839,7 @@ class makeTextCommand(sublime_plugin.TextCommand):
                         printPage = "<text\n  label=\"%s\"\n  size=\"40\"\n  optional=\"0\">\n  <title>%s</title>\n%s</text>\n<suspend/>" % (label.strip(), title.strip(), output)
 
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 
@@ -874,7 +874,7 @@ class makeNumberCommand(sublime_plugin.TextCommand):
                     else:
                         printPage = "<number\n  label=\"%s\"\n  size=\"3\"\n  optional=\"0\">\n  <title>%s</title>\n%s</number>\n<suspend/>" % (label.strip(), title.strip(), output)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 
@@ -897,7 +897,7 @@ class makePipeCommand(sublime_plugin.TextCommand):
                 # compose our new pipe tag
                 printPage = "<pipe\n  label=\"\"\n  capture=\"\">\n  %s\n</pipe>\n" % (output)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print ('make pipe failed')
             print (e)
@@ -940,11 +940,10 @@ class makeRowCommand(sublime_plugin.TextCommand):
                     printPage += "  <row label=\"r%s\"%s>%s</row>\n" % (str(count+1), extra, input[count].strip())
                     count += 1
                 # thanks to replace the regions keep updated with their start and end point
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
 
         except Exception as e:
             print (e)
-
 
 
 class makeRowrCommand(sublime_plugin.TextCommand):
@@ -987,7 +986,7 @@ class makeRowrCommand(sublime_plugin.TextCommand):
                     count -= 1
                     counter +=1
                 # thanks to replace the regions keep updated with their start and end point
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
 
         except Exception as e:
             print (e)
@@ -1043,14 +1042,13 @@ class makeRowsMatchLabelCommand(sublime_plugin.TextCommand):
                        count += 1
                        printPage += "  <row label=\"r%s\"%s>%s</row>\n" % (str(count), extra, line)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 
 class makeRowsMatchValuesCommand(sublime_plugin.TextCommand):
     def run (self,edit):
         try:
-
             sels = self.view.sel()
             input = ''
             docType =  returnContext(self)
@@ -1062,7 +1060,7 @@ class makeRowsMatchValuesCommand(sublime_plugin.TextCommand):
                 #SPLIT UP INTO ROWS
                 input = input.split("\n")
                 #ebay has a different openSize
-                openSize =  '45' if docType =='EBA' else '25'
+                openSize = '45' if docType =='EBA' else '25'
                 #ITERATE ROWS
                 for line in input:
                     line = line.strip()
@@ -1070,9 +1068,9 @@ class makeRowsMatchValuesCommand(sublime_plugin.TextCommand):
                     parts = re.split(r"\s",line,1)
 
                     #GET RID OF EXTRA SPACES
-                    ordinal= parts[0].strip()
-                    ordinal= ordinal.rstrip('.')
-                    ordinal= ordinal.rstrip(')')
+                    ordinal = parts[0].strip()
+                    ordinal = ordinal.rstrip('.')
+                    ordinal = ordinal.rstrip(')')
 
                     #GET RID OF EXTRA SPACES
                     if len(parts) == 2:
@@ -1085,11 +1083,54 @@ class makeRowsMatchValuesCommand(sublime_plugin.TextCommand):
                         extra=' open=\"1\" openSize=\"'+openSize+'\" randomize=\"0\"'
 
                     #COMPOSE ROW
-                    printPage += "  <row label=\"r%s\" value=\"%s\"%s>%s</row>\n" % (ordinal,ordinal, extra, content)
+                    printPage += "  <row label=\"r%s\" value=\"%s\"%s>%s</row>\n" % (ordinal, ordinal, extra, content)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
+
+class makeRowsLabelMatchValuesCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        try:
+            sels = self.view.sel()
+            input = ''
+            docType =  returnContext(self)
+            for sel in sels:
+                count = 0
+                printPage = ''
+                extra = ''
+                input = self.view.substr(sel)
+                #CLEAN UP THE TABS
+                input = re.sub("\t+", " ", input)
+
+                #CLEAN UP SPACES
+                input = re.sub("\n +\n", "\n\n", input)
+
+                #CLEAN UP THE EXTRA LINE BREAKS
+                input = re.sub("\n{2,}", "\n", input)
+                input = fixUniCode(input)
+
+                input = input.strip().split("\n")
+                #ebay has a different openSize
+                openSize =  '45' if docType =='EBA' else '25'
+
+                for x in range(0,len(input)):
+                    input[x] = re.sub("^[a-zA-Z0-9]{1,2}[\.:\)][ \t]+", "", input[x])
+
+                for x in input:
+                    if "other" in input[count].strip().lower() and "specify" in input[count].strip().lower():
+                      input[count] = input[count].strip().replace("_", "")
+                      extra=' open=\"1\" openSize=\"'+openSize+'\" randomize=\"0\"'
+                    else:
+                      extra = ''
+                    printPage += "  <row label=\"r%s\" value=\"%s\"%s>%s</row>\n" % (str(count+1), str(count+1), extra, input[count].strip())
+                    count += 1
+                # thanks to replace the regions keep updated with their start and end point
+                self.view.replace(edit, sel, printPage)
+
+        except Exception as e:
+            print (e)
+
 
 class makeColsCommand(sublime_plugin.TextCommand):
     def run (self,edit):
@@ -1125,7 +1166,7 @@ class makeColsCommand(sublime_plugin.TextCommand):
                         printPage += "  <col label=\"c%s\"%s>%s</col>\n" % (str(count+1), extra, input[count].strip())
                         count += 1
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 
@@ -1177,7 +1218,7 @@ class makeColsMatchLabelCommand(sublime_plugin.TextCommand):
                        count += 1
                        printPage += "  <col label=\"c%s\"%s>%s</col>\n" % (str(count), extra, line)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 
@@ -1222,7 +1263,44 @@ class makeColsMatchValueCommand(sublime_plugin.TextCommand):
                      #COMPOSE COLUMN
                      printPage += "  <col label=\"c%s\" value=\"%s\"%s>%s</col>\n" % (ordinal,ordinal, extra, content)
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
+        except Exception as e:
+            print (e)
+
+class makeColsLabelMatchValueCommand(sublime_plugin.TextCommand):
+    def run (self,edit):
+        try:
+            sels = self.view.sel()
+            input = ''
+            #docType =  returnContext(self)
+            #print self.view.settings()
+            for sel in sels:
+                printPage = ''
+                input = self.view.substr(sel)
+                input = re.sub("\t+", " ", input)
+                #CLEAN UP SPACES
+                input = re.sub("\n +\n", "\n\n", input)
+                #CLEAN UP THE EXTRA LINE BREAKS
+                input = re.sub("\n{2,}", "\n", input)
+                input = fixUniCode(input)
+                input = input.strip().split("\n")
+                #start from output = to fill this class
+                for x in range(0,len(input)):
+                    input[x] = re.sub("^[a-zA-Z0-9]{1,2}[\.:\)][ \t]+", "\n", input[x])
+                count = 0
+                for x in input:
+                    if "other" in input[count].strip().lower() and "specify" in input[count].strip().lower():
+                        input[count] = input[count].strip().replace("_", "")
+                        extra=' open=\"1\" openSize=\"10\" randomize=\"0\"'
+                        printPage += "  <col label=\"c%s\"%s>%s</col>\n" % (str(count+1), extra, input[count].strip())
+                        count += 1
+                    else:
+                        extra = ''
+
+                        printPage += "  <col label=\"c%s\" value=\"%s\"%s>%s</col>\n" % (str(count+1), str(count+1), extra, input[count].strip())
+                        count += 1
+
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 
@@ -1246,7 +1324,7 @@ class makeChoicesCommand(sublime_plugin.TextCommand):
                 for x in input:
                     printPage += "  <choice label=\"ch%s\">%s</choice>\n" % (str(count+1), input[count].strip())
                     count += 1
-            self.view.replace(edit,sel, printPage)
+            self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 
@@ -1272,7 +1350,7 @@ class makeCasesCommand(sublime_plugin.TextCommand):
                     count += 1
                 printPage += "  <case label=\"r%s\" cond=\"1\">UNDEFINED</case>" % (str(count+1))
                 printPage = "<pipe\n  label=\"\"\n  capture=\"\">\n" + printPage + "\n</pipe>"
-            self.view.replace(edit,sel, printPage)
+            self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 
@@ -1291,8 +1369,8 @@ class makeGroupsCommand(sublime_plugin.TextCommand):
                 for x in range(0,len(input)):
                     input[x] = re.sub("^[a-zA-Z0-9]{1,2}[\.:\)][ \t]+", "\n", input[x])
                 for x in range(len(input)):
-                    printPage += "  <group label=\"g" + str(x+1) + "\">" + re.sub(r"^[a-zA-Z0-9]+(\.|:)|^[a-zA-Z0-9]+[a-zA-Z0-9]+(\.|:)", "", input[x]).strip() + "</group>\n"
-            self.view.replace(edit,sel, printPage)
+                    printPage += "  <group label=\"g" + str(x+1) + "\" builder:axis=\"row\">" + re.sub(r"^[a-zA-Z0-9]+(\.|:)|^[a-zA-Z0-9]+[a-zA-Z0-9]+(\.|:)", "", input[x]).strip() + "</group>\n"
+            self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 
@@ -1324,7 +1402,7 @@ class makeLoopBlockCommand(sublime_plugin.TextCommand):
 <looprow label="" cond=""><loopvar name=""></loopvar></looprow>
 </loop>""" % input
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 
@@ -1353,7 +1431,7 @@ class makeSwitchCommand(sublime_plugin.TextCommand):
                     vrange[i] = re.sub('label="%s' % this2, 'label="%s' % that2, vrange[i])
 
                 vrange = "\n".join(vrange)
-                self.view.replace(edit,sel, vrange)
+                self.view.replace(edit, sel, vrange)
         except Exception as e:
             print (e)
 
@@ -1372,7 +1450,7 @@ class makeCommentCommand(sublime_plugin.TextCommand):
                 input = input.replace("\n", "<br/>\n")
                 printPage = "<html\n  label=\"\"\n  where=\"survey\">%s</html>" % input
 
-                self.view.replace(edit,sel, printPage)
+                self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
 

@@ -48,6 +48,14 @@
         "command": "make_rows_match_label"
     },
     {
+        "caption": "Dt::RowsMatchValue",
+        "command": "make_rows_match_values"
+    },
+    {
+        "caption": "Dt::RowsLabelMatchValue",
+        "command": "make_rows_label_match_values"
+    },
+    {
         "caption": "Dt::Columns",
         "command": "make_cols"
     },
@@ -58,6 +66,10 @@
     {
         "caption": "Dt::ColsMatchValue",
         "command": "make_cols_match_value"
+    },
+    {
+        "caption": "Dt::ColsLabelMatchValue",
+        "command": "make_cols_label_match_value"
     },
     {
         "caption": "Dt::Choices",
