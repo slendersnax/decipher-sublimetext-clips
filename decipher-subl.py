@@ -1,4 +1,4 @@
-import sublime, sublime_plugin,re
+import sublime, sublime_plugin, re
 
 #define survey context
 def returnContext(self):
@@ -8,7 +8,7 @@ def returnContext(self):
         return returnString[11:14]
     else:
         return ' '
-# returns array [input, label,title]
+# returns array [input, label, title]
 def tidyQuestionInput(input):
     input = input.strip()
     input = re.sub(r"^(\w?\d+)\.(\d+)",r"\1_\2",input)
@@ -1448,10 +1448,17 @@ class makeCommentCommand(sublime_plugin.TextCommand):
                 input = self.view.substr(sel).strip()
                 input = fixUniCode(input)
                 input = input.replace("\n", "<br/>\n")
-                printPage = "<html\n  label=\"\"\n  where=\"survey\">%s</html>" % input
+
+                label = input[:input.index(" ")].strip(".")
+                input = input[input.index(" ") + 1:]
+
+                printPage = """
+<html
+    label="%s"
+    where="survey">
+    %s
+</html>""" % (label, input)
 
                 self.view.replace(edit, sel, printPage)
         except Exception as e:
             print (e)
-
-

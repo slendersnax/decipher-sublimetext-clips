@@ -48,3 +48,5 @@ To bring up the context menu, right click in the text editor. You can then navig
         - shortcut: `ctrl+shift+1`
     - `makeColsLabelMatchValue`: used on items without a preceding label to create columns with corresponding values
         - shortcut: `ctrl+shift+2`
+- changes to existing commands:
+    - `makeComment` (create `<html>` / info tag): modified so that the result resembles a typical question tag (first word becomes label, tags and attributes on new lines)
